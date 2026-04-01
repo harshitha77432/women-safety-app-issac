@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Edit, Camera, Phone, Mail, MapPin, Shield, LogOut, Upload, Palette, Save, X } from 'lucide-react';
+import { User, Edit, Camera, Phone, Mail, MapPin, Shield, LogOut, Upload, Save, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 

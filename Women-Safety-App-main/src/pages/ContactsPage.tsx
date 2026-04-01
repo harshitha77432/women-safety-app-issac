@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Phone, Trash2, Edit, UserPlus } from 'lucide-react';
+import { Plus, Phone, Trash2, UserPlus } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 

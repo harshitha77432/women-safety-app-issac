@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, PhoneOff, User, Volume2, Mic, MessageSquare } from 'lucide-react';
+import { PhoneOff, User, Volume2, Mic, MessageSquare } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 interface FakeCallProps {

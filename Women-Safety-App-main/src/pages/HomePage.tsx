@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
       } else {
         addNotification('Unable to get current location. Please try again.');
       }
-    } catch (error) {
+    } catch {
       addNotification('Failed to share location. Please try again.');
     }
   };

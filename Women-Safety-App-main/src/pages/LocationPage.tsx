@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Share, Navigation, Clock, AlertCircle, RefreshCw, Copy, History } from 'lucide-react';
 import { useLocation } from '../hooks/useLocation';
-import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import MapComponent from '../components/MapComponent';
 
@@ -14,7 +13,6 @@ interface Location {
 
 const LocationPage: React.FC = () => {
   const { location, error, loading, getCurrentLocation, startWatching, stopWatching } = useLocation();
-  const { user } = useAuth();
   const { isDark } = useTheme();
   const [isWatching, setIsWatching] = useState(false);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
@@ -33,6 +31,7 @@ const LocationPage: React.FC = () => {
 
   useEffect(() => {
     if ('getBattery' in navigator) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (navigator as any).getBattery().then((battery: any) => {
         if (battery.level < 0.2) {
           setBatteryWarning('Low battery may affect GPS accuracy');

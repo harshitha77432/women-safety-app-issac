@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import logo from '../assets/logo.png'; 
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
       if (!success) {
         setError('Invalid credentials. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('Login failed. Please try again.');
     } finally {
       setIsLoading(false);
