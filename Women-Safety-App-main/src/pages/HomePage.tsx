@@ -54,28 +54,10 @@ const HomePage: React.FC = () => {
     }
   };
 
-  const alertContacts = () => {
-    if (!user?.emergencyContacts || user.emergencyContacts.length === 0) {
-      addNotification('No emergency contacts found. Please add contacts first.');
-      return;
-    }
-
-    const alertMessage = `EMERGENCY ALERT: ${user.name} needs immediate assistance!`;
-    
-    
-    user.emergencyContacts.forEach(contact => {
-      console.log(`Sending alert to ${contact.name} (${contact.phone}): ${alertMessage}`);
-    });
-    
-    
-    if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification('Emergency Alert Sent', {
-        body: `Alert sent to ${user.emergencyContacts.length} emergency contacts`,
-        icon: '/emergency-icon.png'
-      });
-    }
-    
-    addNotification(`Emergency alert sent to ${user.emergencyContacts.length} contacts!`);
+  // Simple SMS alert for mobile browsers
+  const sendAlert = () => {
+    const message = '🚨 Emergency! I need help. Please contact me immediately.';
+    window.location.href = `sms:911?body=${encodeURIComponent(message)}`;
   };
 
   const toggleSafeMode = () => {
@@ -113,7 +95,7 @@ const HomePage: React.FC = () => {
       title: 'Alert Contacts',
       description: 'Notify emergency contacts',
       color: 'bg-gradient-to-br from-orange-500 to-red-500',
-      onClick: alertContacts
+      onClick: sendAlert
     },
     {
       icon: Shield,
