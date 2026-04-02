@@ -142,7 +142,7 @@ const EmergencyButton: React.FC = () => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          triggerEmergencyAlert();
+          sendAlert();
           return 0;
         }
         return prev - 1;
@@ -150,31 +150,9 @@ const EmergencyButton: React.FC = () => {
     }, 1000);
   };
 
-  const triggerEmergencyAlert = () => {
-    if (!user?.emergencyContacts?.length) {
-      alert('No emergency contacts found! Please add contacts first.');
-      return;
-    }
-
-    const newLocation = location || lastLocation;
-    setLastLocation(newLocation ? { lat: newLocation.latitude, lng: newLocation.longitude } : null);
-
-    const alertMessage = `🚨 EMERGENCY ALERT from ${user?.name || 'User'}\n` +
-      `📍 Location: ${newLocation ? 
-        `https://maps.google.com/?q=${newLocation.latitude},${newLocation.longitude}` : 
-        'Unable to determine location'}\n` +
-      `⏰ Time: ${new Date().toLocaleString()}`;
-    
-    user?.emergencyContacts?.forEach(contact => {
-      console.log(`Emergency alert sent to ${contact.name} (${contact.phone}): ${alertMessage}`);
-    });
-    
-    // Make emergency call to local emergency services
-    const emergencyNumber = '112'; // International emergency number, adjust for local (e.g., 911 for US, 999 for UK)
-    window.location.href = `tel:${emergencyNumber}`;
-    
-    setShowConfirmation(true);
-    setTimeout(() => setShowConfirmation(false), 5000);
+  const sendAlert = () => {
+    const message = '🚨 Emergency! I need help. Please contact me immediately.';
+    window.location.href = `sms:911?body=${encodeURIComponent(message)}`;
   };
 
   const cancelAlert = () => {
@@ -288,8 +266,14 @@ const EmergencyButton: React.FC = () => {
               
               <div className="flex space-x-3">
                 <button
-                  onClick={() => window.open(`tel:100`)}
+                  onClick={sendAlert}
                   className="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center justify-center"
+                >
+                  Send Emergency Alert
+                </button>
+                <button
+                  onClick={() => window.open(`tel:100`)}
+                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center"
                 >
                   <Phone className="w-5 h-5 mr-2" />
                   Call 100
