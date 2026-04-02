@@ -216,7 +216,7 @@ const EmergencyButton: React.FC = () => {
         {countdown > 0 && (
           <>
             <div className="absolute inset-0 border-8 border-red-400/30 rounded-full animate-ping opacity-0"></div>
-            <div className="absolute inset-0 border-4 border-red-300/50 rounded-full animate-ping opacity-0" style={{ animationDelay: '0.3s' }}></div> {/* eslint-disable-line */}
+            <div className="absolute inset-0 border-4 border-red-300/50 rounded-full animate-ping opacity-0" style={{ animationDelay: '0.3s' }}></div> { }
           </>
         )}
       </div>
