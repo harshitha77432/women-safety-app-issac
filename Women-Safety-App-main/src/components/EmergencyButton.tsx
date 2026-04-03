@@ -152,7 +152,7 @@ const EmergencyButton: React.FC = () => {
 
   const sendAlert = () => {
     const message = '🚨 Emergency! I need help. Please contact me immediately.';
-    window.location.href = `sms:911?body=${encodeURIComponent(message)}`;
+    window.location.href = `sms:+916379675758?body=${encodeURIComponent(message)}`;
   };
 
   const cancelAlert = () => {
